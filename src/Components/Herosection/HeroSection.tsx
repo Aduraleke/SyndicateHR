@@ -14,7 +14,7 @@ const BulletModal = dynamic(() => import("./BulletModal"), { ssr: false });
 
 export default function HeroSection() {
   const reduced = useReducedMotion();
-  const prefersReduced = reduced ?? false; // ✅ Normalize null → false
+const prefersReduced = !!reduced; 
 
   return (
     <OrbitProvider>
