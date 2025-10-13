@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
@@ -13,9 +13,15 @@ import config from "./config";
 const BulletModal = dynamic(() => import("./BulletModal"), { ssr: false });
 
 export default function HeroSection() {
-const reduced = useReducedMotion();
-const prefersReduced: boolean = !!reduced; // 
+  // Ensure a strict boolean for TypeScript; useReducedMotion() can return null
+  const reduced = useReducedMotion();
+  const prefersReduced: boolean = !!reduced;
 
+  // Memoize the bullets layer props to prevent unnecessary re-renders
+  const bulletsLayerProps = useMemo(
+    () => ({ prefersReduced, fields: FIELDS, config }),
+    [prefersReduced]
+  );
 
   return (
     <OrbitProvider>
@@ -68,11 +74,9 @@ const prefersReduced: boolean = !!reduced; //
                 className="rounded-full object-cover"
                 priority
               />
-              <BulletsLayer
-                prefersReduced={prefersReduced}
-                fields={FIELDS}
-                config={config}
-              />
+
+              {/* Memoized Bullets Layer */}
+              <BulletsLayer {...bulletsLayerProps} />
             </motion.div>
           </div>
         </div>
