@@ -1,6 +1,9 @@
 
 import AboutSection from '@/Components/Aboutsection'
-import HeroSection from '@/Components/Herosection/HeroSection'
+import HeroSection from '@/Components/HeroSection'
+import IndustriesShowcase from '@/Components/IndustryShowcase'
+import RecruitmentJourney from '@/Components/RecruitmentJourney'
+
 
 import React from 'react'
 
@@ -10,6 +13,10 @@ export default function page() {
 
 <HeroSection/>
 <AboutSection/>
+<IndustriesShowcase/>
+<RecruitmentJourney/>
+
+
     </div>
   )
 }
