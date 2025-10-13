@@ -30,8 +30,7 @@ const milestones = [
 export default function AboutSection() {
   return (
     <section className="relative w-full bg-[#060607] text-white py-16 md:py-24">
-      <div className="max-w-5xl mx-auto px-6 md:px-10 relative">
-        {/* SECTION HEADER */}
+                {/* SECTION HEADER */}
         <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -53,6 +52,8 @@ export default function AboutSection() {
             where we’re headed next.
           </motion.p>
         </div>
+
+      <div className="max-w-5xl mx-auto px-6 md:px-10 relative">
 
         {/* TIMELINE LINE */}
         <div className="absolute left-1/2 transform -translate-x-1/2 top-0 h-full w-[1.5px] bg-gradient-to-b from-[#ff6b35] via-white/10 to-transparent pointer-events-none" />
