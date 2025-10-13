@@ -15,7 +15,7 @@ export default function ClientLayout({
   const hideNavbar =
     pathname === "/login" ||
     pathname === "/signup" ||
-    pathname === "/not-found";
+    pathname === "/_not-found";
 
   return (
     <>
