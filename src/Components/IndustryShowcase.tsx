@@ -46,7 +46,7 @@ export default function IndustriesAndJourney() {
 
   return (
     <div style={{ background: BG }}>
-      <section className="relative py-20 px-6 lg:px-12 overflow-hidden">
+      <section className="relative py-20 px-6 lg:px-12 overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#393838] to-[#d5d2d2]">
         {/* Glow background */}
         <div className="absolute inset-0 pointer-events-none">
           <div
@@ -58,7 +58,7 @@ export default function IndustriesAndJourney() {
               mixBlendMode: "screen",
             }}
           />
-          <div
+          {/* <div
             className="absolute right-10 bottom-16 rounded-full blur-3xl opacity-20"
             style={{
               width: 420,
@@ -66,7 +66,7 @@ export default function IndustriesAndJourney() {
               background: `radial-gradient(circle at 70% 70%, rgba(255,107,53,0.35), transparent 40%)`,
               mixBlendMode: "screen",
             }}
-          />
+          /> */}
         </div>
 
         {/* Content */}
@@ -74,13 +74,12 @@ export default function IndustriesAndJourney() {
           {/* Header */}
           <div className="text-center mb-12">
             <div
-              className="inline-flex items-center space-x-2 rounded-full px-4 py-2 mb-4 border"
+              className="inline-flex items-center space-x-2 bg-[#FF6B35] rounded-xl px-6 py-4 mb-4 border"
               style={{
-                background: "rgba(255,107,53,0.08)",
-                borderColor: "rgba(255,107,53,0.12)",
+                borderColor: "#FF6B35",
               }}
             >
-              <span className="text-sm font-semibold" style={{ color: ACCENT }}>
+              <span className="text-lg text-[#fff] font-semibold">
                 Industries We Serve
               </span>
             </div>
@@ -96,7 +95,7 @@ export default function IndustriesAndJourney() {
           {/* Hero Video */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black aspect-video">
             <video
-              src="/heroVideo.mp4"
+              src="/HR Syndicate Industry Video.mp4"
               autoPlay
               loop
               muted

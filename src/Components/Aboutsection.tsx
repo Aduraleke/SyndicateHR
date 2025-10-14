@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
@@ -11,44 +11,25 @@ const milestones = [
     title: "How We Started",
     text: "We began as a small, determined team, driven by the idea that technology should make people’s lives easier, not more complicated. That belief shaped our first product and every decision since.",
     icon: "mdi:seed-outline",
-    image: "/about-start.jpg",
+    image: "/HR Syndicate about-start.jpg",
   },
   {
     title: "Why We Build",
     text: "Our purpose has always been to empower creators, teams, and dreamers to do their best work. We design solutions that scale ethically, inspire trust, and strengthen human collaboration.",
     icon: "mdi:lightbulb-on-outline",
-    image: "/about-why.jpg",
+    image: "/HR Syndicate Why We Build.jpg",
   },
   {
     title: "Where We’re Going",
     text: "The journey continues toward a digital future that blends innovation, transparency, and personal growth. We’re building the ecosystem that helps everyone grow together.",
     icon: "mdi:rocket-launch-outline",
-    image: "/about-future.jpeg",
+    image: "/HR Syndicate where we are going.jpeg",
   },
 ];
 
-// Container variant (controls staggered child animations)
-const container = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.25, delayChildren: 0.3 },
-  },
-};
-
-// Individual item variant (smooth slide-up with slight perspective)
-const itemVariant = {
-  hidden: { opacity: 0, y: 100, rotateX: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { duration: 0.9, ease: "easeOut" as const },
-  },
-};
-
 export default function AboutSection() {
   return (
-    <section className="relative w-full bg-[#060607] text-white py-24 md:py-32 overflow-hidden">
+    <section className="relative w-full bg-white text-black py-12 overflow-hidden">
       {/* GLOWING BACKGROUND */}
       <motion.div
         animate={{ opacity: [0.1, 0.25, 0.1] }}
@@ -72,112 +53,27 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-white/70 max-w-2xl mx-auto text-lg md:text-xl"
+          className="text-black/70 max-w-2xl mx-auto text-lg md:text-xl"
         >
-          A journey fueled by purpose how we started, what drives us, and
+          A journey fueled by purpose — how we started, what drives us, and
           where we’re headed next.
         </motion.p>
       </div>
 
       {/* TIMELINE */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        className="max-w-6xl mx-auto px-6 md:px-12 relative"
-      >
-        {/* TIMELINE LINE GLOW */}
+      <div className="max-w-6xl mx-auto px-6 md:px-12 relative">
         <motion.div
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 transform -translate-x-1/2 top-0 w-[3px] h-full bg-gradient-to-b from-[#ff6b35] via-white/10 to-transparent shadow-[0_0_25px_#ff6b35]/70"
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 w-[3px] h-full origin-top bg-gradient-to-b from-[#ff6b35] via-[#ff6b35]/40 to-transparent"
         />
 
-        {/* MILESTONES */}
-        <div className="space-y-28 md:space-y-36">
+        {/* MILESTONE CARDS */}
+        <div className="space-y-44 md:space-y-52">
           {milestones.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariant}
-              className={`relative flex flex-col md:flex-row items-center gap-10 md:gap-16 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              {/* TIMELINE DOT */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.3, 1],
-                  boxShadow: [
-                    "0 0 0px rgba(255,107,53,0.3)",
-                    "0 0 25px rgba(255,107,53,0.8)",
-                    "0 0 0px rgba(255,107,53,0.3)",
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#ff6b35] z-10"
-              />
-
-              {/* IMAGE CARD */}
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  rotateX: 3,
-                  rotateY: index % 2 === 0 ? 5 : -5,
-                }}
-                transition={{ type: "spring", stiffness: 150, damping: 12 }}
-                className="w-full md:w-1/2 relative rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(255,107,53,0.1)] group"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent z-10"
-                  whileHover={{ opacity: 0.3 }}
-                />
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={600}
-                  height={400}
-                  className="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* FLOATING GLOW BEHIND IMAGE */}
-                <motion.div
-                  animate={{
-                    opacity: [0.1, 0.3, 0.1],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -inset-10 bg-[#ff6b35]/20 blur-3xl rounded-full z-0"
-                />
-              </motion.div>
-
-              {/* CONTENT */}
-              <div className="w-full md:w-1/2 text-center md:text-left space-y-4 relative z-10">
-                <motion.div
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex justify-center md:justify-start items-center gap-3"
-                >
-                  <Icon
-                    icon={item.icon}
-                    className="text-[#ff6b35] text-4xl drop-shadow-[0_0_10px_#ff6b35]"
-                  />
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    {item.title}
-                  </h3>
-                </motion.div>
-                <p className="text-white/80 leading-relaxed text-lg">
-                  {item.text}
-                </p>
-              </div>
-            </motion.div>
+            <MilestoneCard key={index} item={item} index={index} />
           ))}
         </div>
 
@@ -185,10 +81,7 @@ export default function AboutSection() {
         <div className="text-center mt-28">
           <Link href="/about">
             <motion.button
-              whileHover={{
-                scale: 1.08,
-                boxShadow: "0 0 35px rgba(255,107,53,0.7)",
-              }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.97 }}
               className="px-10 py-4 rounded-full bg-gradient-to-r from-[#ff6b35] to-orange-500 text-black font-semibold text-lg transition"
             >
@@ -196,7 +89,100 @@ export default function AboutSection() {
             </motion.button>
           </Link>
         </div>
-      </motion.div>
+      </div>
     </section>
+  );
+}
+
+type MilestoneProps = {
+  item: {
+    title: string;
+    text: string;
+    icon: string;
+    image: string;
+  };
+  index: number;
+};
+
+function MilestoneCard({ item, index }: MilestoneProps) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.6, 0.3]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ y, scale, opacity }}
+      className={`relative flex flex-col md:flex-row items-center gap-10 md:gap-16 ${
+        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+      } transition-all duration-700`}
+    >
+      {/* TIMELINE DOT */}
+      <motion.div
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#ff6b35] z-10"
+      />
+
+      {/* IMAGE CARD */}
+      <motion.div
+        whileHover={{
+          scale: 1.05,
+          rotateX: 3,
+          rotateY: index % 2 === 0 ? 5 : -5,
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 12 }}
+        className="w-full md:w-1/2 relative rounded-3xl overflow-hidden group shadow-lg"
+      >
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent z-10"
+          whileHover={{ opacity: 0.3 }}
+        />
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={600}
+          height={400}
+          quality={60}
+          className="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <motion.div
+          animate={{
+            opacity: [0.1, 0.3, 0.1],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -inset-10 bg-[#ff6b35]/20 blur-3xl rounded-full z-0"
+        />
+      </motion.div>
+
+      {/* CONTENT */}
+      <div className="w-full md:w-1/2 text-center md:text-left space-y-4 relative z-10">
+        <motion.div
+          whileHover={{ x: 5 }}
+          transition={{ duration: 0.3 }}
+          className="flex justify-center md:justify-start items-center gap-3"
+        >
+          <Icon
+            icon={item.icon}
+            className="text-[#ff6b35] text-4xl drop-shadow-[0_0_10px_#ff6b35]"
+          />
+          <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+            {item.title}
+          </h3>
+        </motion.div>
+        <p className="text-black/80 leading-relaxed text-lg">{item.text}</p>
+      </div>
+    </motion.div>
   );
 }
