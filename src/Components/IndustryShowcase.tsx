@@ -12,7 +12,6 @@ type Industry = {
 const ACCENT = "#FF6B35";
 const BG = "#000000";
 
-// Simplified list — all industries share the same hero video
 const industries: Industry[] = [
   { name: "Fintech", slug: "fintech", tagline: "Fast-moving finance teams and product labs" },
   { name: "Healthcare", slug: "healthcare", tagline: "Patient-first operations & clinical tech" },
@@ -26,37 +25,32 @@ const industries: Industry[] = [
 ];
 
 export default function IndustriesAndJourney() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const active = industries[activeIndex];
+  const [activeIndex, setActiveIndex] = useState<number>(-1); // -1 = initial intro message
 
-  // Simulate progress bar (demo animation)
-  const [progress, setProgress] = useState<number>(0);
-
+  // Delay before first rotation
   useEffect(() => {
-    setProgress(0);
-    const progressInterval = setInterval(() => {
-      setProgress((p) => (p >= 100 ? 0 : p + 0.8));
-    }, 200);
+    const timer = setTimeout(() => setActiveIndex(0), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
-    return () => clearInterval(progressInterval);
-  }, [activeIndex]);
-
-  // 🌀 Auto-switch industry every 6 seconds
+  // Auto-switch industries
   useEffect(() => {
+    if (activeIndex < 0) return;
     const switchInterval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % industries.length);
-    }, 6000); // every 6 seconds
-
+    }, 6000);
     return () => clearInterval(switchInterval);
-  }, []);
+  }, [activeIndex]);
+
+  const active = activeIndex >= 0 ? industries[activeIndex] : null;
 
   return (
     <div style={{ background: BG }}>
       <section className="relative py-20 px-6 lg:px-12 overflow-hidden">
-        {/* Background Glows */}
+        {/* Glow background */}
         <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute left-10 top-16 rounded-full filter blur-3xl opacity-30"
+            className="absolute left-10 top-16 rounded-full blur-3xl opacity-30"
             style={{
               width: 400,
               height: 400,
@@ -65,7 +59,7 @@ export default function IndustriesAndJourney() {
             }}
           />
           <div
-            className="absolute right-10 bottom-16 rounded-full filter blur-3xl opacity-20"
+            className="absolute right-10 bottom-16 rounded-full blur-3xl opacity-20"
             style={{
               width: 420,
               height: 420,
@@ -99,7 +93,7 @@ export default function IndustriesAndJourney() {
             </p>
           </div>
 
-          {/* Hero Video Showcase */}
+          {/* Hero Video */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black aspect-video">
             <video
               src="/heroVideo.mp4"
@@ -110,70 +104,54 @@ export default function IndustriesAndJourney() {
               className="absolute inset-0 w-full h-full object-cover"
             />
 
-            {/* Cinematic Overlay */}
-            <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-6">
-              <AnimatePresence mode="wait">
+            {/* Cinematic overlay for fade */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+            {/* Animated bottom-right text */}
+            <AnimatePresence mode="wait">
+              {activeIndex === -1 ? (
                 <motion.div
-                  key={active.slug}
+                  key="intro"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute bottom-8 right-8 text-right"
                 >
-                  <h3 className="text-2xl font-bold text-white">{active.name} Industry</h3>
-                  <p className="mt-2 text-sm text-[#ffd7c9]">{active.tagline}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white tracking-wide drop-shadow-lg">
+                    Industries We Target
+                  </h3>
                 </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Fake controls (play/progress/time) */}
-            <div
-              className="absolute bottom-6 left-6 right-6 rounded-2xl p-3 border"
-              style={{
-                background: "rgba(0,0,0,0.6)",
-                borderColor: "rgba(255,255,255,0.06)",
-              }}
-            >
-              <div className="flex items-center space-x-4">
-                <button
-                  className="w-10 h-10 rounded-full flex items-center justify-center shadow"
-                  style={{
-                    background: "white",
-                    boxShadow: `0 6px 24px ${ACCENT}33`,
-                  }}
+              ) : (
+                <motion.div
+                  key={active?.slug}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute bottom-8 right-8 text-right max-w-xs md:max-w-md"
                 >
-                  <svg
-                    className="w-5 h-5 text-gray-900"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+                  <h3
+                    className="text-2xl md:text-4xl font-bold text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
+                    style={{ textShadow: "0 2px 16px rgba(255,107,53,0.6)" }}
                   >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </button>
-
-                <div className="flex-1">
-                  <div className="h-1 bg-white/30 rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full rounded-full"
-                      animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      style={{
-                        background: `linear-gradient(90deg, ${ACCENT}, rgba(255,107,53,0.85))`,
-                        boxShadow: `0 6px 18px ${ACCENT}66`,
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="min-w-[80px] text-right">
-                  <span className="text-sm font-medium text-white">
-                    {`${Math.floor((progress / 100) * 3)}:${String(
-                      Math.floor(((progress / 100) * 60) % 60)
-                    ).padStart(2, "0")} / 3:45`}
-                  </span>
-                </div>
-              </div>
-            </div>
+                    {active?.name} Industry
+                  </h3>
+                  <p
+                    className="mt-2 text-sm md:text-base text-[#ffe5d8] font-medium leading-snug"
+                    style={{
+                      textShadow: "0 2px 10px rgba(0,0,0,0.6)",
+                      background: "linear-gradient(to left, rgba(0,0,0,0.3), transparent)",
+                      padding: "0.25rem 0.5rem",
+                      borderRadius: "0.5rem",
+                      display: "inline-block",
+                    }}
+                  >
+                    {active?.tagline}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Industry Tabs */}
@@ -206,7 +184,7 @@ export default function IndustriesAndJourney() {
             })}
           </div>
 
-          {/* Stats */}
+          {/* Stats Section */}
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { label: "Fintech Placements", count: "2.5K+" },

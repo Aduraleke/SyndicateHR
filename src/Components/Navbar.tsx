@@ -34,6 +34,7 @@ export default function NavBar() {
         md:top-3 bottom-3 md:bottom-auto
       "
     >
+      
       {/* Background glow */}
       <motion.div
         animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.02, 1] }}
@@ -50,17 +51,16 @@ export default function NavBar() {
 
         "
       >
-        {/* Logo inline on mobile, absolute center on desktop */}
         <motion.div
           whileHover={{ scale: 1.08, rotate: 2 }}
           transition={{ type: 'spring', stiffness: 220, damping: 15 }}
           className="
             w-[40px] h-[40px] md:w-[65px] md:h-[65px]
             rounded-2xl flex items-center justify-center 
-            bg-gradient-to-tr from-[#ff6b35] to-[#ffb987]
 
-            border border-[#ffb987]/30 cursor-pointer
-            md:absolute md:left-1/2 md:-translate-x-1/2
+
+             cursor-pointer
+             md:left-1/2 md:-translate-x-1/2
           "
         >
           <Link href="/" className="w-full h-full flex items-center justify-center">
@@ -68,9 +68,9 @@ export default function NavBar() {
               animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
-                  "0 0 15px rgba(255,107,53,0.3)",
-                  "0 0 35px rgba(255,107,53,0.45)",
-                  "0 0 15px rgba(255,107,53,0.3)",
+                  // "0 0 15px rgba(255,107,53,0.3)",
+                  // "0 0 35px rgba(255,107,53,0.45)",
+                  // "0 0 15px rgba(255,107,53,0.3)",
                 ],
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -80,12 +80,12 @@ export default function NavBar() {
                 alt="Syndicate HRs Logo"
                 width={65}
                 height={65}
-                className="rounded-full object-contain shadow-[0_0_25px_rgba(255,107,53,0.25)] border border-white/10"
+                className="rounded-full object-contain  border border-white/10"
               />
             </motion.div>
           </Link>
         </motion.div>
-
+        
         {links.map((link) => (
           <NavItem key={link.name} link={link} />
         ))}
@@ -94,7 +94,11 @@ export default function NavBar() {
   );
 }
 
-function NavItem({ link }: { link: { name: string; icon: string; href: string } }) {
+function NavItem({
+  link,
+}: {
+  link: { name: string; icon: string; href: string };
+}) {
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}

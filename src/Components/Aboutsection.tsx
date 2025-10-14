@@ -74,7 +74,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-white/70 max-w-2xl mx-auto text-lg md:text-xl"
         >
-          A journey fueled by purpose — how we started, what drives us, and
+          A journey fueled by purpose how we started, what drives us, and
           where we’re headed next.
         </motion.p>
       </div>
