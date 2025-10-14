@@ -23,7 +23,7 @@ const milestones = [
     title: "Where We’re Going",
     text: "The journey continues toward a digital future that blends innovation, transparency, and personal growth. We’re building the ecosystem that helps everyone grow together.",
     icon: "mdi:rocket-launch-outline",
-    image: "/about-future.jpg",
+    image: "/about-future.jpeg",
   },
 ];
 

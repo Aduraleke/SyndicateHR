@@ -47,7 +47,7 @@ export default function NavBar() {
           py-3 px-4 md:px-10 
           bg-[#0b0b0b]/80 backdrop-blur-2xl 
           rounded-full border border-white/10 
-          shadow-[0_0_25px_rgba(255,107,53,0.15)]
+
         "
       >
         {/* Logo inline on mobile, absolute center on desktop */}
@@ -58,7 +58,7 @@ export default function NavBar() {
             w-[40px] h-[40px] md:w-[65px] md:h-[65px]
             rounded-2xl flex items-center justify-center 
             bg-gradient-to-tr from-[#ff6b35] to-[#ffb987]
-            shadow-[0_0_40px_rgba(255,107,53,0.4)] 
+
             border border-[#ffb987]/30 cursor-pointer
             md:absolute md:left-1/2 md:-translate-x-1/2
           "
