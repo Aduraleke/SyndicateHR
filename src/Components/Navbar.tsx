@@ -45,7 +45,7 @@ export default function NavBar() {
       <div
         className="
           relative flex items-center justify-evenly flex-wrap
-          py-3 px-4 md:px-10 
+          py-1 px-4 md:px-10 
           bg-[#0b0b0b]/80 backdrop-blur-2xl 
           rounded-full border border-white/10 
 
