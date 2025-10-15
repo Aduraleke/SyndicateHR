@@ -98,7 +98,7 @@ export default function Footer() {
               </motion.a>
             ))}
           </div>
-          <p className="mt-4 text-white/60 text-sm">info@syndicatehrs.com</p>
+          <p className="mt-4 text-white/60 text-sm">Info@athrsyndicate.com</p>
         </motion.div>
       </div>
 
@@ -112,7 +112,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          © {new Date().getFullYear()} Syndicate HRs — All Rights Reserved.
+          © {new Date().getFullYear()} HR Syndicate  All Rights Reserved.
         </motion.div>
         <div className="flex gap-4 mt-3 md:mt-0">
           <Link href="/privacy" className="hover:text-[#ff6b35] transition">

@@ -172,7 +172,7 @@ export default function RecruitmentJourney() {
           </h2>
           <p className="mt-4 mx-auto text-[#000]">
             We partner with you through discovery, sourcing, assessment,
-            coordination, and onboarding — ensuring placements that stick.
+            coordination, and onboarding, ensuring placements that stick.
           </p>
         </div>
       </div>

@@ -85,7 +85,7 @@ export default function HRHeroPage(): JSX.Element {
             </div>
 
             {/* Stats Section */}
-            <div className="mt-6 w-full max-w-2xl mx-auto">
+            <div className="mt-6 w-full max-w-2xl ">
               <div className="bg-neutral-900/70 backdrop-blur-xl rounded-2xl border border-neutral-800 p-4 sm:p-6 flex flex-wrap justify-around items-center gap-4">
                 {[
                   { value: "9", label: "Industries" },
@@ -160,8 +160,8 @@ export default function HRHeroPage(): JSX.Element {
                     transition-all duration-[900ms] ease-out
                     ${
                       isVisible
-                        ? "translate-x-[200px] opacity-100"
-                        : "translate-x-[100px] opacity-0"
+                        ? "xl:translate-x-[200px] translate-x-[80px] opacity-100"
+                        : "xl:translate-x-[100px] translate-x-[50px] opacity-0"
                     }`}
                     >
                       <span className="text-white font-medium text-[10px] sm:text-[11px] tracking-wide">
