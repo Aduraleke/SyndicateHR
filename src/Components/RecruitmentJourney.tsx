@@ -165,7 +165,7 @@ export default function RecruitmentJourney() {
         <div className="flex flex-col justify-center max-w-2xl items-start space-y-6">
           <h2
             id="journey-heading"
-            className="text-6xl font-bold"
+            className="text-4xl md:text-6xl font-bold"
             style={{ color: "black" }}
           >
             Your Recruitment Journey with Us

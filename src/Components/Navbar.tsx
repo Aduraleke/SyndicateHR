@@ -45,7 +45,7 @@ export default function NavBar() {
       <div
         className="
           relative flex items-center justify-evenly flex-wrap
-          py-1 px-4 md:px-10 
+          py-1 px-4 md:px-6 
           bg-[#0b0b0b]/80 backdrop-blur-2xl 
           rounded-full border border-white/10 
 
@@ -78,8 +78,8 @@ export default function NavBar() {
               <Image
                 src="/syndicate.jpeg"
                 alt="Syndicate HRs Logo"
-                width={65}
-                height={65}
+                width={60}
+                height={60}
                 className="rounded-full object-contain  border border-white/10"
               />
             </motion.div>
@@ -104,16 +104,16 @@ function NavItem({
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1, y: -2 }}
       transition={{ type: "spring", stiffness: 250, damping: 15 }}
-      className="relative cursor-pointer select-none group  py-2"
+      className="relative cursor-pointer select-none group  py-1"
     >
       <Link
         href={link.href}
         className="flex flex-col items-center justify-center gap-1 text-white/80 hover:text-[#ff6b35] transition-all"
       >
-        <Icon icon={link.icon} className="text-2xl md:text-[1.7rem]" />
+        <Icon icon={link.icon} className="text-xl md:text-[1rem]" />
         <motion.span
           className="
-            text-[0.75rem] md:text-sm font-semibold text-[#ffb987]
+            text-[0.5rem] md:text-xs font-semibold text-[#ffb987]
             block md:relative md:top-full md:pt-1
           "
           initial={{ opacity: 0, y: 8 }}

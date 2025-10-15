@@ -117,7 +117,7 @@ export default function IndustriesAndJourney() {
                   transition={{ duration: 0.8 }}
                   className="absolute bottom-8 right-8 text-right"
                 >
-                  <h3 className="text-3xl md:text-4xl font-bold text-white tracking-wide drop-shadow-lg">
+                  <h3 className="text-xl md:text-4xl font-bold text-white tracking-wide drop-shadow-lg">
                     Industries We Target
                   </h3>
                 </motion.div>
@@ -131,13 +131,13 @@ export default function IndustriesAndJourney() {
                   className="absolute bottom-8 right-8 text-right max-w-xs md:max-w-md"
                 >
                   <h3
-                    className="text-2xl md:text-4xl font-bold text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
+                    className="text-md md:text-4xl font-bold text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                     style={{ textShadow: "0 2px 16px rgba(255,107,53,0.6)" }}
                   >
                     {active?.name} Industry
                   </h3>
                   <p
-                    className="mt-2 text-sm md:text-base text-[#ffe5d8] font-medium leading-snug"
+                    className="mt-2 text-xs md:text-base text-[#ffe5d8] font-medium leading-snug"
                     style={{
                       textShadow: "0 2px 10px rgba(0,0,0,0.6)",
                       background: "linear-gradient(to left, rgba(0,0,0,0.3), transparent)",
