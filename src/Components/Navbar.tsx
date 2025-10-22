@@ -9,7 +9,7 @@ import Image from "next/image";
 const links = [
   { name: "About", icon: "solar:info-square-broken", href: "/about" },
   { name: "Services", icon: "solar:settings-broken", href: "/services" },
-  { name: "Careers", icon: "mdi:briefcase-outline", href: "/careers" },
+  { name: "Industries", icon: "mdi:briefcase-outline", href: "/industries" },
   { name: "Contact", icon: "solar:chat-round-dots-broken", href: "/contact" },
 ];
 
