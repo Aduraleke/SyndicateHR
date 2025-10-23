@@ -8,22 +8,27 @@ import Link from "next/link";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [sent, ] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm({ ...form, [e.target.name]: e.target.value });
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSent(true);
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setSent(false), 3000);
-    }, 1500);
-  };
+  setTimeout(() => {
+    const { name, email, message } = form;
+    const mailtoLink = `mailto:hello@hrsyndicate.com?subject=${encodeURIComponent(
+      `New Contact Message from ${name}`
+    )}&body=${encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    )}`;
+    window.location.href = mailtoLink;
+    setLoading(false);
+  }, 1000);
+};
+
 
   return (
     <main className="flex flex-col lg:flex-row min-h-screen text-white bg-black">
@@ -128,7 +133,7 @@ export default function ContactPage() {
           <div>
             <h2 className="text-3xl font-bold mb-3">Get in Touch</h2>
             <p className="text-gray-300 max-w-sm">
-              Whether you're looking to hire, partner, or learn more, we’re always ready to connect.
+              Whether you&apos;re looking to hire, partner, or learn more, we’re always ready to connect.
             </p>
           </div>
 

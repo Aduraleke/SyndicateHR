@@ -80,7 +80,7 @@ export default function ServicesPage() {
             {/* --- Card Content --- */}
             <div className="relative z-10 p-10 flex flex-col justify-center min-h-[260px]">
               <h3 className="text-2xl md:text-3xl font-semibold mb-4 tracking-tight text-white">
-                <span className="bg-gradient-to-r from-[#FF6B35] to-orange-300 bg-clip-text text-transparent">
+                <span className=" bg-clip-text text-white">
                   {service.title}
                 </span>
               </h3>
