@@ -144,7 +144,7 @@ const industries: Industry[] = [
     tagline: "All other industries we serve",
     image: "/HR Syndicate Other.jpg",
     description:
-      "From education to logistics, retail to manufacturing — our recruitment services adapt to every industry’s talent needs with precision and care.",
+      "From education to logistics, retail to manufacturing, our recruitment services adapt to every industry’s talent needs with precision and care.",
     focus: [
       "Operations Managers",
       "Data & Logistics Coordinators",
@@ -390,7 +390,7 @@ function IndustrySection({
       {/* Background parallax image (covers whole section, subtle) */}
       <motion.div
         style={{ translateY: imgY }}
-        className="pointer-events-none absolute inset-0 opacity-30 -z-10"
+        className="pointer-events-none absolute inset-0 opacity-10 -z-10"
         aria-hidden
       >
         <Image src={industry.image} alt={industry.name} fill className="object-cover" />

@@ -31,7 +31,7 @@ export default function NavBar() {
       className="
         fixed z-50 w-[94vw] max-w-[850px]
         left-1/2 -translate-x-1/2
-        md:top-3 bottom-3 md:bottom-auto
+        top-3 bottom-auto
       "
     >
       

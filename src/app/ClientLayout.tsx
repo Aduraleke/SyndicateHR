@@ -3,6 +3,7 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import NavBar from "@/Components/Navbar";
+import WhatsAppButton from "@/Components/WhatsappButton";
 
 export default function ClientLayout({
   children,
@@ -21,6 +22,7 @@ export default function ClientLayout({
     <>
       {!hideNavbar && <NavBar />}
       {children}
+      <WhatsAppButton />
     </>
   );
 }

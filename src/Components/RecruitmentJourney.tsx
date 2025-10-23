@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 const ACCENT = "#FF6B35";
 
@@ -48,7 +49,6 @@ const steps = [
 export default function RecruitmentJourney() {
   const [active, setActive] = useState(0);
 
-  // Automatically move to next step every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % steps.length);
@@ -57,103 +57,104 @@ export default function RecruitmentJourney() {
   }, []);
 
   return (
-    <section className="relative bg-white text-black py-20 px-6 lg:px-12 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-[#ddd9d9] to-[#4f4e4e]" />
+    <section className="relative bg-gradient-to-br from-[#fff] via-[#faf7f6] to-[#f2f0ef] text-[#1a1a1a] py-24 px-6 lg:px-12 overflow-hidden">
+      {/* background glow */}
+      <div
+        className="absolute inset-0 -z-10 opacity-40"
+        style={{
+          background: `radial-gradient(circle at 40% 20%, ${ACCENT}15 0%, transparent 60%)`,
+        }}
+      />
+      <div className="absolute inset-0 bg-[url('/grid-light.svg')] bg-center opacity-[0.04]" />
 
-      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 z-10 items-center">
-        {/* LEFT: Active Step Display */}
-        <div className="relative flex flex-col items-center justify-center">
+      {/* container */}
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        {/* LEFT — Animated Step */}
+        <div className="flex flex-col items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={steps[active].step}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
+              exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="relative w-full h-[420px] rounded-3xl overflow-hidden border border-black/10 shadow-xl flex flex-col justify-center items-center p-10 bg-gradient-to-br from-black/[0.05] to-black/[0.02]"
+              className="relative w-full h-[440px] rounded-3xl overflow-hidden border border-[#00000010] shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex flex-col justify-center items-center p-10 bg-white"
             >
-              {/* glowing overlay */}
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  background: `radial-gradient(circle at 30% 30%, ${ACCENT}33, transparent 60%)`,
+              {/* animated soft gradient */}
+              <motion.div
+                animate={{
+                  background: [
+                    `radial-gradient(circle at 30% 30%, ${ACCENT}20, transparent 60%)`,
+                    `radial-gradient(circle at 70% 70%, ${ACCENT}20, transparent 60%)`,
+                  ],
                 }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 opacity-20"
               />
 
-              {/* Animated Icon */}
+              {/* ICON */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.7, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 0.15, type: "spring", stiffness: 150 }}
-                className="mb-5 flex items-center justify-center"
+                initial={{ scale: 0.7, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 120, damping: 8 }}
+                className="mb-6 relative"
               >
-                <div className="p-5 rounded-full bg-orange-100 shadow-inner relative">
+                <div className="p-6 rounded-full bg-orange-100 relative overflow-hidden">
                   <Icon
                     icon={steps[active].icon}
-                    className="text-[3rem] text-[#FF6B35] drop-shadow-[0_0_12px_#ff6b35aa]"
+                    className="text-[3.2rem] text-[#FF6B35] drop-shadow-[0_0_15px_#ff6b35aa]"
                   />
-                  {/* Soft pulsating glow */}
                   <motion.div
-                    animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.4, 0, 0.4],
                     }}
-                    className="absolute inset-0 bg-[#ff6b35]/40 rounded-full blur-2xl"
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                    }}
+                    className="absolute inset-0 bg-[#FF6B35]/40 blur-2xl rounded-full"
                   />
                 </div>
               </motion.div>
 
-              <motion.h3
-                className="text-xl font-semibold mb-2 text-orange-400"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.25 }}
-              >
+              {/* TEXT */}
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-[#FF6B35] mb-2">
                 {steps[active].step}
-              </motion.h3>
-
-              <motion.h2
-                className="text-3xl font-bold mb-4 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
+              </h3>
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-3">
                 {steps[active].title}
-              </motion.h2>
-
-              <motion.p
-                className="text-gray-700 max-w-lg text-center leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
+              </h2>
+              <p className="text-gray-700 max-w-lg text-center leading-relaxed">
                 {steps[active].desc}
-              </motion.p>
+              </p>
             </motion.div>
           </AnimatePresence>
 
-          {/* Progress indicator */}
-          <div className="flex items-center space-x-2 mt-3">
+          {/* progress dots */}
+          <div className="flex items-center space-x-2 mt-6">
             {steps.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
-                className="group relative"
                 aria-label={`Go to ${steps[i].step}`}
+                className="relative"
               >
                 <div
                   className={`h-2 rounded-full transition-all duration-300 ${
                     active === i
-                      ? "bg-orange-500 w-8"
-                      : "bg-black/20 w-3 group-hover:w-5"
+                      ? "bg-[#FF6B35] w-8"
+                      : "bg-black/20 w-3 hover:w-5"
                   }`}
                 />
                 {active === i && (
                   <motion.div
-                    layoutId="indicator"
-                    className="absolute -top-1 left-0 right-0 h-4 rounded-full blur-sm bg-orange-500/40"
+                    layoutId="glow"
+                    className="absolute -top-1 left-0 right-0 h-4 rounded-full blur-sm bg-[#FF6B35]/40"
                   />
                 )}
               </button>
@@ -161,42 +162,91 @@ export default function RecruitmentJourney() {
           </div>
         </div>
 
-        {/* RIGHT: Minimal Step Info + Next */}
-        <div className="flex flex-col justify-center max-w-2xl items-start space-y-6">
-          <h2
-            id="journey-heading"
-            className="text-4xl md:text-6xl font-bold"
-            style={{ color: "black" }}
+        {/* RIGHT — Overview Text */}
+        <div className="flex flex-col justify-center max-w-2xl space-y-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-4xl md:text-5xl font-bold leading-tight"
           >
-            Your Recruitment Journey with Us
-          </h2>
-          <p className="mt-4 mx-auto text-[#000]">
-            We partner with you through discovery, sourcing, assessment,
-            coordination, and onboarding, ensuring placements that stick.
+            Your Recruitment Journey
+
+          </motion.h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            We don’t just fill roles, we build pathways for growth. From discovery to onboarding, 
+            every step is crafted to deliver lasting impact and aligned values.
           </p>
+          <div className="flex items-center space-x-3 mt-2">
+            <div className="h-1 w-6 bg-[#FF6B35] rounded-full" />
+            <span className="text-sm tracking-wide text-gray-600">
+              Precision. Partnership. Performance.
+            </span>
+          </div>
         </div>
       </div>
 
+      {/* timeline preview */}
+      <div className="mt-24 hidden md:flex justify-center gap-8 max-w-5xl mx-auto">
+        {steps.map((s, i) => (
+          <motion.div
+            key={i}
+            className={`flex flex-col items-center relative ${
+              i !== steps.length - 1 ? "after:content-[''] after:absolute after:w-16 after:h-[2px] after:bg-[#FF6B35]/30 after:top-6 after:left-full" : ""
+            }`}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 150 }}
+          >
+            <div
+              className={`p-4 rounded-full border-2 ${
+                i === active
+                  ? "border-[#FF6B35] bg-[#FF6B35]/10"
+                  : "border-gray-300 bg-white"
+              }`}
+            >
+              <Icon
+                icon={s.icon}
+                className={`text-2xl ${
+                  i === active ? "text-[#FF6B35]" : "text-gray-400"
+                }`}
+              />
+            </div>
+            <p
+              className={`text-xs mt-2 ${
+                i === active ? "text-[#FF6B35] font-semibold" : "text-gray-500"
+              }`}
+            >
+              {s.step}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+
       {/* CTA */}
-      <div className="mt-20 text-center relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="mt-24 text-center relative z-10"
+      >
         <h3 className="text-2xl font-bold mb-3">
           Ready to Start Your Journey?
         </h3>
-        <p className="text-gray-700 mb-6">
-          Let’s help you find exceptional talent that transforms your
-          organization.
+        <p className="text-gray-700 mb-6 max-w-lg mx-auto">
+          Let’s help you discover and attract world-class talent that drives your growth.
         </p>
-        <button
-          className="rounded-full px-8 py-3 font-bold shadow-lg transform hover:scale-105 transition"
+        <Link
+          href="/contact"
+          className="rounded-full px-10 py-4 font-semibold shadow-lg hover:scale-105 transition"
           style={{
             background: ACCENT,
-            color: "black",
+            color: "white",
             boxShadow: `0 8px 20px ${ACCENT}55`,
           }}
         >
           Schedule a Consultation
-        </button>
-      </div>
+        </Link>
+      </motion.div>
     </section>
   );
 }

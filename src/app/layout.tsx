@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ClientLayout from "./ClientLayout"; // client-side wrapper
+import ClientLayout from "./ClientLayout"; // imported from separate file
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +28,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
-        {/* All client-side logic goes here */}
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

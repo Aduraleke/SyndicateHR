@@ -10,8 +10,9 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,160 +26,175 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden flex flex-col">
-      {/* --- Animated Grid Background --- */}
+    <main className="relative min-h-screen flex flex-col lg:flex-row bg-[#050505] text-white overflow-hidden">
+      {/* --- Background Layers --- */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,107,53,0.12),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center bg-[length:60px_60px] opacity-10 animate-[pulse_6s_ease-in-out_infinite]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,107,53,0.15),transparent_70%)]" />
+        <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-[#FF6B35]/20 blur-[180px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.08]" />
       </div>
 
-      {/* --- Hero --- */}
-      <section className="text-center pt-28 pb-12 px-6 relative z-10">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-[#FF6B35] to-yellow-300 bg-clip-text text-transparent"
-        >
-          Let’s Build Something Extraordinary
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-gray-400 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed"
-        >
-          Whether you’re scaling your team or joining one, we’re ready to connect the right people to the right mission.
-        </motion.p>
-      </section>
-
-      {/* --- Contact Section --- */}
-      <section className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-16 px-6 lg:px-16 pb-24">
-        {/* Info Panel */}
+      {/* --- LEFT SIDE: Contact Form --- */}
+      <section className="flex-1 flex items-center justify-center py-24 px-6 lg:px-16 bg-transparent relative">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full lg:w-1/2 space-y-10"
+          className="w-full max-w-lg bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-xl"
         >
-          <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
-          <p className="text-gray-400 leading-relaxed">
-            Talk directly with our consultants for partnerships, recruitment,
-            or collaboration opportunities. Let’s discuss your next great hire or idea.
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] to-yellow-300 bg-clip-text text-transparent mb-2">
+            Send Us a Message
+          </h1>
+          <p className="text-gray-400 mb-8 text-base">
+            Have a question or proposal? Let’s make something great together.
           </p>
 
-          <div className="space-y-5">
-            <div className="flex items-center gap-3">
-              <Icon icon="mdi:email-outline" className="text-[#FF6B35] text-2xl" />
-              <a
-                href="mailto:hello@hrsyndicate.com"
-                className="hover:text-[#FF6B35] transition"
-              >
-                hello@hrsyndicate.com
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <Icon icon="mdi:phone-outline" className="text-[#FF6B35] text-2xl" />
-              <a href="tel:+447708303366" className="hover:text-[#FF6B35] transition">
-                +44 7708 303366
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <Icon icon="mdi:whatsapp" className="text-[#25D366] text-2xl" />
-              <Link
-                href="https://wa.me/447708303366"
-                target="_blank"
-                className="hover:text-[#25D366] transition"
-              >
-                Chat on WhatsApp
-              </Link>
-            </div>
-            <div className="flex items-center gap-3">
-              <Icon icon="mdi:map-marker-outline" className="text-[#FF6B35] text-2xl" />
-              <span>Global — Remote First</span>
-            </div>
-          </div>
-
-          <div className="flex gap-6 mt-8">
-            {["linkedin", "twitter", "instagram"].map((platform) => (
-              <Link
-                key={platform}
-                href="#"
-                className="w-11 h-11 flex items-center justify-center rounded-full border border-[#FF6B35]/40 hover:border-[#FF6B35] hover:text-[#FF6B35] transition duration-300"
-              >
-                <Icon icon={`mdi:${platform}`} className="text-xl" />
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Form Panel */}
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full lg:w-1/2 bg-white/10 rounded-3xl p-8  backdrop-blur-xl"
-        >
-
-
-          <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-          <div className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-gray-400 mb-1">Name</label>
+              <label className="block text-gray-400 mb-2 text-sm">
+                Full Name
+              </label>
               <input
                 name="name"
                 type="text"
                 required
                 value={form.name}
                 onChange={handleChange}
-                className="w-full bg-neutral-900/80 border border-gray-700 rounded-xl px-4 py-3 focus:border-[#FF6B35] outline-none transition"
+                className="w-full bg-neutral-900/60 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none transition"
               />
             </div>
+
             <div>
-              <label className="block text-gray-400 mb-1">Email</label>
+              <label className="block text-gray-400 mb-2 text-sm">
+                Email Address
+              </label>
               <input
                 name="email"
                 type="email"
                 required
                 value={form.email}
                 onChange={handleChange}
-                className="w-full bg-neutral-900/80 border border-gray-700 rounded-xl px-4 py-3 focus:border-[#FF6B35] outline-none transition"
+                className="w-full bg-neutral-900/60 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none transition"
               />
             </div>
+
             <div>
-              <label className="block text-gray-400 mb-1">Message</label>
+              <label className="block text-gray-400 mb-2 text-sm">
+                Message
+              </label>
               <textarea
                 name="message"
-                required
                 rows={5}
+                required
                 value={form.message}
                 onChange={handleChange}
-                className="w-full bg-neutral-900/80 border border-gray-700 rounded-xl px-4 py-3 focus:border-[#FF6B35] outline-none transition resize-none"
+                className="w-full bg-neutral-900/60 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none transition resize-none"
               />
             </div>
-          </div>
 
-          <motion.button
-            type="submit"
-            whileTap={{ scale: 0.97 }}
-            disabled={loading}
-            className="w-full mt-6 bg-[#FF6B35] text-white py-3 rounded-xl font-semibold text-lg hover:bg-[#e85f2f] transition duration-300 disabled:opacity-50"
-          >
-            {loading ? "Sending..." : "Send Message"}
-          </motion.button>
-
-          {sent && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center mt-4 text-green-400"
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-[#FF6B35] to-[#ff914d] text-white py-3 rounded-xl font-semibold text-base shadow-lg hover:shadow-[#FF6B35]/30 transition duration-300 disabled:opacity-50"
             >
-              ✅ Message sent successfully!
-            </motion.div>
-          )}
-        </motion.form>
+              {loading ? "Sending..." : "Send Message"}
+            </motion.button>
+
+            {sent && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center mt-3 text-green-400 text-sm"
+              >
+                ✅ Message sent successfully!
+              </motion.div>
+            )}
+          </form>
+        </motion.div>
       </section>
+
+      {/* --- RIGHT SIDE: Info & Socials --- */}
+      <motion.aside
+        initial={{ opacity: 0, x: 60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="flex-1 flex flex-col justify-center px-10 lg:px-16 py-24 space-y-10"
+      >
+        <div>
+          <h2 className="text-3xl font-bold text-white mb-3">
+            Let’s Connect
+          </h2>
+          <p className="text-gray-400 text-base max-w-sm">
+            We operate globally with a remote-first approach. Reach us directly
+            through any of the channels below.
+          </p>
+        </div>
+
+        {/* --- Contact Details --- */}
+        <div className="space-y-6">
+          {[
+            {
+              icon: "mdi:email-outline",
+              text: "hello@hrsyndicate.com",
+              href: "mailto:hello@hrsyndicate.com",
+            },
+            {
+              icon: "mdi:phone-outline",
+              text: "+44 7708 303366",
+              href: "tel:+447708303366",
+            },
+            {
+              icon: "mdi:whatsapp",
+              text: "Chat on WhatsApp",
+              href: "https://wa.me/447708303366",
+            },
+          ].map((item, i) => (
+            <Link
+              key={i}
+              href={item.href}
+              target="_blank"
+              className="flex items-center gap-4 group"
+            >
+              <Icon
+                icon={item.icon}
+                className="text-2xl text-[#FF6B35] group-hover:scale-110 transition-transform"
+              />
+              <span className="text-gray-300 group-hover:text-[#FF6B35] transition">
+                {item.text}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        {/* --- Social Icons --- */}
+        <div className="flex gap-5 pt-8">
+          {[
+            { icon: "mdi:linkedin", href: "#" },
+            { icon: "mdi:twitter", href: "#" },
+            { icon: "mdi:instagram", href: "#" },
+          ].map((platform, i) => (
+            <Link
+              key={i}
+              href={platform.href}
+              className="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 hover:border-[#FF6B35] hover:bg-[#FF6B35]/10 transition duration-300"
+            >
+              <Icon icon={platform.icon} className="text-xl" />
+            </Link>
+          ))}
+        </div>
+
+        {/* --- Location Card --- */}
+        <div className="pt-8">
+          <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
+            <h4 className="font-semibold text-lg mb-2 text-white">
+              Headquarters
+            </h4>
+            <p className="text-gray-400 text-sm">
+              Remote • Operating across Europe, Africa, and North America
+            </p>
+          </div>
+        </div>
+      </motion.aside>
     </main>
   );
 }

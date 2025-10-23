@@ -91,7 +91,7 @@ export default function IndustriesAndJourney() {
 
   return (
     <div style={{ background: BG }}>
-      <section className="relative py-20 px-6 lg:px-12 overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#393838] to-[#d5d2d2]">
+      <section className="relative py-20 px-6 lg:px-12 overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#2d2b2b] to-[#8f8b8b]">
         {/* Glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div
@@ -172,26 +172,28 @@ export default function IndustriesAndJourney() {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                  <div className="absolute bottom-8 right-8 text-right max-w-xs md:max-w-md">
-                    <h3
-                      className="text-md md:text-4xl font-bold text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
-                      style={{ textShadow: "0 2px 16px rgba(255,107,53,0.6)" }}
-                    >
-                      {active?.name} Industry
-                    </h3>
-                    <p
-                      className="mt-2 text-xs md:text-base text-[#ffe5d8] font-medium leading-snug"
-                      style={{
-                        textShadow: "0 2px 10px rgba(0,0,0,0.6)",
-                        background:
-                          "linear-gradient(to left, rgba(0,0,0,0.3), transparent)",
-                        padding: "0.25rem 0.5rem",
-                        borderRadius: "0.5rem",
-                        display: "inline-block",
-                      }}
-                    >
-                      {active?.tagline}
-                    </p>
+                  {/* Enhanced bottom-right text */}
+                  <div className="absolute bottom-8 right-8 max-w-xs md:max-w-md text-right z-20">
+                    <div className="backdrop-blur-md bg-black/50 border border-[#FF6B35]/40 rounded-2xl px-4 py-3 md:px-6 md:py-4 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all">
+                      <h3
+                        className="text-lg md:text-4xl font-bold text-white leading-tight mb-2"
+                        style={{
+                          textShadow: "0 0 18px rgba(255,107,53,0.8)",
+                          letterSpacing: "0.5px",
+                        }}
+                      >
+                        {active?.name} Industry
+                      </h3>
+                      <p
+                        className="text-sm md:text-base text-[#FFEDE5] font-medium leading-snug"
+                        style={{
+                          textShadow: "0 1px 8px rgba(0,0,0,0.8)",
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {active?.tagline}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -238,7 +240,7 @@ export default function IndustriesAndJourney() {
             ].map((s) => (
               <div
                 key={s.label}
-                className="text-center rounded-2xl p-6 border"
+                className="text-center rounded-2xl p-6 border backdrop-blur-md"
                 style={{
                   background: "rgba(255,255,255,0.02)",
                   borderColor: "rgba(255,255,255,0.04)",
