@@ -22,80 +22,68 @@ export default function ContactPage() {
       setSent(true);
       setForm({ name: "", email: "", message: "" });
       setTimeout(() => setSent(false), 3000);
-    }, 1600);
+    }, 1500);
   };
 
   return (
-    <main className="relative min-h-screen flex flex-col lg:flex-row bg-[#050505] text-white overflow-hidden">
-      {/* --- Background Layers --- */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,107,53,0.15),transparent_70%)]" />
-        <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-[#FF6B35]/20 blur-[180px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.08]" />
-      </div>
-
-      {/* --- LEFT SIDE: Contact Form --- */}
-      <section className="flex-1 flex items-center justify-center py-24 px-6 lg:px-16 bg-transparent relative">
+    <main className="flex flex-col lg:flex-row min-h-screen text-white bg-black">
+      
+      {/* === LEFT SIDE: CONTACT FORM === */}
+      <section className="flex-1 flex items-center justify-center p-6 lg:p-16 bg-black relative">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-lg bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-xl"
+          className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl"
         >
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-[#FF6B35] to-yellow-300 bg-clip-text text-transparent mb-2">
-            Send Us a Message
+          <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#FF6B35] to-yellow-300 bg-clip-text text-transparent mb-3">
+            Let’s Work Together
           </h1>
-          <p className="text-gray-400 mb-8 text-base">
-            Have a question or proposal? Let’s make something great together.
+          <p className="text-gray-300 mb-8 text-base leading-relaxed">
+            Got a question, idea, or collaboration proposal? We’d love to hear from you.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-gray-400 mb-2 text-sm">
-                Full Name
-              </label>
+              <label className="block text-gray-400 text-sm mb-2">Full Name</label>
               <input
-                name="name"
                 type="text"
+                name="name"
                 required
                 value={form.name}
                 onChange={handleChange}
-                className="w-full bg-neutral-900/60 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none transition"
+                className="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-2 text-sm">
-                Email Address
-              </label>
+              <label className="block text-gray-400 text-sm mb-2">Email Address</label>
               <input
-                name="email"
                 type="email"
+                name="email"
                 required
                 value={form.email}
                 onChange={handleChange}
-                className="w-full bg-neutral-900/60 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none transition"
+                className="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-2 text-sm">
-                Message
-              </label>
+              <label className="block text-gray-400 text-sm mb-2">Message</label>
               <textarea
                 name="message"
                 rows={5}
                 required
                 value={form.message}
                 onChange={handleChange}
-                className="w-full bg-neutral-900/60 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none transition resize-none"
+                className="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:border-[#FF6B35] focus:ring-2 focus:ring-[#FF6B35]/30 outline-none resize-none"
               />
             </div>
 
             <motion.button
               whileTap={{ scale: 0.97 }}
               disabled={loading}
-              className="w-full bg-gradient-to-r from-[#FF6B35] to-[#ff914d] text-white py-3 rounded-xl font-semibold text-base shadow-lg hover:shadow-[#FF6B35]/30 transition duration-300 disabled:opacity-50"
+              className="w-full bg-gradient-to-r from-[#FF6B35] to-[#ff914d] text-white py-3 rounded-xl font-semibold shadow-md hover:shadow-[#FF6B35]/30 transition duration-300 disabled:opacity-60"
             >
               {loading ? "Sending..." : "Send Message"}
             </motion.button>
@@ -104,91 +92,100 @@ export default function ContactPage() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-center mt-3 text-green-400 text-sm"
+                className="text-center text-green-400 text-sm mt-3"
               >
-                ✅ Message sent successfully!
+                ✅ Your message has been sent successfully!
               </motion.div>
             )}
           </form>
         </motion.div>
       </section>
 
-      {/* --- RIGHT SIDE: Info & Socials --- */}
+      {/* === RIGHT SIDE: VIDEO + CONTACT INFO === */}
       <motion.aside
-        initial={{ opacity: 0, x: 60 }}
+        initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex-1 flex flex-col justify-center px-10 lg:px-16 py-24 space-y-10"
+        transition={{ duration: 0.9, delay: 0.2 }}
+        className="flex-1 relative flex flex-col justify-end"
       >
-        <div>
-          <h2 className="text-3xl font-bold text-white mb-3">
-            Let’s Connect
-          </h2>
-          <p className="text-gray-400 text-base max-w-sm">
-            We operate globally with a remote-first approach. Reach us directly
-            through any of the channels below.
-          </p>
+        {/* === VIDEO SECTION === */}
+        <div className="absolute inset-0">
+          <video
+            className="w-full h-full object-cover"
+            src="/HR%20Syndicate%20Contact%20Video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+          {/* gradient overlay for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         </div>
 
-        {/* --- Contact Details --- */}
-        <div className="space-y-6">
-          {[
-            {
-              icon: "mdi:email-outline",
-              text: "hello@hrsyndicate.com",
-              href: "mailto:hello@hrsyndicate.com",
-            },
-            {
-              icon: "mdi:phone-outline",
-              text: "+44 7708 303366",
-              href: "tel:+447708303366",
-            },
-            {
-              icon: "mdi:whatsapp",
-              text: "Chat on WhatsApp",
-              href: "https://wa.me/447708303366",
-            },
-          ].map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              target="_blank"
-              className="flex items-center gap-4 group"
-            >
-              <Icon
-                icon={item.icon}
-                className="text-2xl text-[#FF6B35] group-hover:scale-110 transition-transform"
-              />
-              <span className="text-gray-300 group-hover:text-[#FF6B35] transition">
-                {item.text}
-              </span>
-            </Link>
-          ))}
-        </div>
+        {/* === INFO OVERLAY === */}
+        <div className="relative z-10 p-10 lg:p-16 space-y-8 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+          <div>
+            <h2 className="text-3xl font-bold mb-3">Get in Touch</h2>
+            <p className="text-gray-300 max-w-sm">
+              Whether you're looking to hire, partner, or learn more, we’re always ready to connect.
+            </p>
+          </div>
 
-        {/* --- Social Icons --- */}
-        <div className="flex gap-5 pt-8">
-          {[
-            { icon: "mdi:linkedin", href: "#" },
-            { icon: "mdi:twitter", href: "#" },
-            { icon: "mdi:instagram", href: "#" },
-          ].map((platform, i) => (
-            <Link
-              key={i}
-              href={platform.href}
-              className="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 hover:border-[#FF6B35] hover:bg-[#FF6B35]/10 transition duration-300"
-            >
-              <Icon icon={platform.icon} className="text-xl" />
-            </Link>
-          ))}
-        </div>
+          <div className="space-y-5">
+            {[
+              {
+                icon: "mdi:email-outline",
+                text: "hello@hrsyndicate.com",
+                href: "mailto:hello@hrsyndicate.com",
+              },
+              {
+                icon: "mdi:phone-outline",
+                text: "+44 7708 303366",
+                href: "tel:+447708303366",
+              },
+              {
+                icon: "mdi:whatsapp",
+                text: "Chat on WhatsApp",
+                href: "https://wa.me/447708303366",
+              },
+            ].map((item, i) => (
+              <Link
+                key={i}
+                href={item.href}
+                target="_blank"
+                className="flex items-center gap-3 group"
+              >
+                <Icon
+                  icon={item.icon}
+                  className="text-2xl text-[#FF6B35] group-hover:scale-110 transition-transform"
+                />
+                <span className="text-gray-300 group-hover:text-[#FF6B35] transition">
+                  {item.text}
+                </span>
+              </Link>
+            ))}
+          </div>
 
-        {/* --- Location Card --- */}
-        <div className="pt-8">
-          <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
-            <h4 className="font-semibold text-lg mb-2 text-white">
-              Headquarters
-            </h4>
+          <div className="flex gap-5 pt-6">
+            {[
+              { icon: "mdi:linkedin", href: "#" },
+              { icon: "mdi:twitter", href: "#" },
+              { icon: "mdi:instagram", href: "#" },
+            ].map((platform, i) => (
+              <Link
+                key={i}
+                href={platform.href}
+                target="_blank"
+                className="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 hover:border-[#FF6B35] hover:bg-[#FF6B35]/10 transition duration-300"
+              >
+                <Icon icon={platform.icon} className="text-xl" />
+              </Link>
+            ))}
+          </div>
+
+          <div className="bg-black/60 border border-white/10 rounded-2xl p-6 mt-8">
+            <h4 className="font-semibold text-lg mb-2">Headquarters</h4>
             <p className="text-gray-400 text-sm">
               Remote • Operating across Europe, Africa, and North America
             </p>

@@ -56,7 +56,7 @@ export default function ServicesPage() {
           className="text-gray-400 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed"
         >
           At HR Syndicate, we connect businesses with top talent — from
-          executives to specialists — through strategic, results-driven
+          executives to specialists, through strategic, results-driven
           recruitment.
         </motion.p>
       </section>
