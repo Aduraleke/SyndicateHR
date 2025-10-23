@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Icon } from '@iconify/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import { motion } from "framer-motion";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
+import Link from "next/link";
 
-const ACCENT = '#FF6B35';
+const ACCENT = "#FF6B35";
 
 export default function AboutPage() {
   return (
@@ -35,8 +35,9 @@ export default function AboutPage() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mt-5 text-neutral-700 dark:text-gray-300 text-lg leading-relaxed"
           >
-            HR’s Syndicate connects human ambition with visionary companies. 
-            We believe hiring should be fast, thoughtful, and deeply human, built on understanding, not algorithms.
+            HR’s Syndicate connects human ambition with visionary companies. We
+            believe hiring should be fast, thoughtful, and deeply human, built
+            on understanding, not algorithms.
           </motion.p>
         </header>
 
@@ -49,14 +50,18 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Our Story</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Our Story
+            </h2>
             <p className="text-neutral-700 dark:text-gray-300 leading-relaxed">
-              HR’s Syndicate began from a simple truth, great people were being lost in automated systems. 
-              We set out to change that by rebuilding recruitment around empathy, precision, and trust.
+              HR’s Syndicate began from a simple truth, great people were being
+              lost in automated systems. We set out to change that by rebuilding
+              recruitment around empathy, precision, and trust.
             </p>
             <p className="text-neutral-700 dark:text-gray-300 leading-relaxed">
-              A decade later, we’ve helped connect thousands of professionals to companies who see their potential, 
-              not just their résumé. Across fintech, healthcare, and engineering, we make hiring human again.
+              A decade later, we’ve helped connect thousands of professionals to
+              companies who see their potential, not just their résumé. Across
+              fintech, healthcare, and engineering, we make hiring human again.
             </p>
           </motion.div>
 
@@ -82,7 +87,9 @@ export default function AboutPage() {
         <section className="relative text-center">
           <div
             className="absolute inset-0 -z-10 blur-3xl opacity-30"
-            style={{ background: `radial-gradient(circle, ${ACCENT}20 0%, transparent 60%)` }}
+            style={{
+              background: `radial-gradient(circle, ${ACCENT}20 0%, transparent 60%)`,
+            }}
           />
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -96,19 +103,19 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
             {[
               {
-                icon: 'mdi:account-group-outline',
-                title: 'Human First',
-                desc: 'Relationships over algorithms. Every placement starts with real conversation and care.',
+                icon: "mdi:account-group-outline",
+                title: "Human First",
+                desc: "Relationships over algorithms. Every placement starts with real conversation and care.",
               },
               {
-                icon: 'mdi:lightning-bolt-outline',
-                title: 'Speed & Precision',
-                desc: 'We move fast, but never rush. Each match is backed by intent and understanding.',
+                icon: "mdi:lightning-bolt-outline",
+                title: "Speed & Precision",
+                desc: "We move fast, but never rush. Each match is backed by intent and understanding.",
               },
               {
-                icon: 'mdi:handshake-outline',
-                title: 'Partnership for Growth',
-                desc: 'We don’t just fill roles, we nurture long-term partnerships that empower success.',
+                icon: "mdi:handshake-outline",
+                title: "Partnership for Growth",
+                desc: "We don’t just fill roles, we nurture long-term partnerships that empower success.",
               },
             ].map((value, i) => (
               <motion.div
@@ -117,7 +124,10 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.03, boxShadow: '0 0 30px rgba(255,107,53,0.15)' }}
+                whileHover={{
+                  scale: 1.03,
+                  boxShadow: "0 0 30px rgba(255,107,53,0.15)",
+                }}
                 className="bg-white dark:bg-[#111] p-10 rounded-3xl border border-[#00000010] dark:border-[#ffffff10] transition shadow-sm"
               >
                 <div className="text-[#FF6B35] text-4xl mb-4">
@@ -144,10 +154,10 @@ export default function AboutPage() {
           </motion.h2>
           <div className="flex flex-wrap justify-center gap-10 md:gap-20">
             {[
-              { label: 'Placements', value: '10K+' },
-              { label: 'Industries Served', value: '12+' },
-              { label: 'Client Satisfaction', value: '96%' },
-              { label: 'Years of Experience', value: '10+' },
+              { label: "Placements", value: "10K+" },
+              { label: "Industries Served", value: "12+" },
+              { label: "Client Satisfaction", value: "96%" },
+              { label: "Years of Experience", value: "10+" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -168,29 +178,36 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="relative rounded-3xl overflow-hidden text-center">
-          <div
-            className="absolute inset-0 -z-10 blur-3xl opacity-30"
-            style={{ background: `radial-gradient(circle, ${ACCENT} 0%, transparent 50%)` }}
-          />
-          <div className="bg-gradient-to-br from-[#FF6B35] via-[#ffb347] to-[#ffd580] p-12 rounded-2xl text-black shadow-[0_10px_40px_rgba(255,107,53,0.25)] relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
-            <h3 className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">
-              Let’s Build What’s Next
-            </h3>
-            <p className="text-md md:text-lg mb-8 text-black/80 max-w-xl mx-auto leading-relaxed">
-              Partner with recruiters who understand people, and potential. Together, 
-              we’ll create teams that make an impact.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-black text-white px-10 py-4 rounded-full font-semibold cursor-pointer shadow-lg hover:scale-105 transition"
-            >
-              Get in Touch
-            </Link>
-          </div>
-        </section>
+      {/* CTA */}
+<section className="relative rounded-3xl overflow-hidden text-center">
+  <div
+    className="absolute inset-0 -z-10 blur-3xl opacity-30"
+    style={{
+      background: `radial-gradient(circle, ${ACCENT} 0%, transparent 50%)`,
+    }}
+  />
+  <div className="bg-gradient-to-br from-[#FF6B35] via-[#ffb347] to-[#ffd580] p-12 rounded-2xl text-black shadow-[0_10px_40px_rgba(255,107,53,0.25)] relative overflow-hidden">
+    {/* make overlay non-interactive so button receives clicks */}
+    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+    <h3 className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">
+      Let’s Build What’s Next
+    </h3>
+    <p className="text-md md:text-lg mb-8 text-black/80 max-w-xl mx-auto leading-relaxed">
+      Partner with recruiters who understand people, and potential.
+      Together, we’ll create teams that make an impact.
+    </p>
+
+    <motion.div whileTap={{ scale: 0.97 }} className="relative z-10">
+      <Link
+        href="/contact"
+        className="inline-block bg-black text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:scale-105 transition"
+      >
+        Get in Touch
+      </Link>
+    </motion.div>
+  </div>
+</section>
+
       </div>
     </main>
   );
