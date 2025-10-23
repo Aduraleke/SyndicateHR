@@ -98,7 +98,7 @@ export default function Footer() {
               </motion.a>
             ))}
           </div>
-          <p className="mt-4 text-white/60 text-sm">Info@athrsyndicate.com</p>
+          <p className="mt-4 text-white/60 text-sm">hello@athrsyndicate.com</p>
         </motion.div>
       </div>
 
