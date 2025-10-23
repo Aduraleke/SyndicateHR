@@ -55,8 +55,8 @@ export default function ServicesPage() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="text-gray-400 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed"
         >
-          At HR Syndicate, we connect businesses with top talent — from
-          executives to specialists — through strategic, results-driven
+          At HR Syndicate, we connect businesses with top talent, from
+          executives to specialists, through strategic, results-driven
           recruitment.
         </motion.p>
       </section>
