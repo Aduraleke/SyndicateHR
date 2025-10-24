@@ -73,7 +73,7 @@ export default function AboutPage() {
             className="relative rounded-3xl overflow-hidden border border-[#00000010] dark:border-[#ffffff10] shadow-[0_10px_30px_rgba(0,0,0,0.1)]"
           >
             <Image
-              src="/HR Syndicate Why We Build.jpg"
+              src="/HR Syndicate AboutUs.webp"
               alt="HR's Syndicate Team"
               width={1200}
               height={800}
