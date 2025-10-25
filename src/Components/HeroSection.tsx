@@ -7,7 +7,8 @@ import Link from "next/link"; // ✅ fixed import
 
 export default function HRHeroPage(): JSX.Element {
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-950 via-black to-neutral-900 text-white">
+   <div className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-950 via-black to-neutral-900 text-white pt-[90px] sm:pt-[100px]">
+
       {/* Ambient Glow */}
       <motion.div
         className="absolute -inset-48 bg-[radial-gradient(circle_at_center,_rgba(255,107,53,0.12)_0%,_transparent_70%)]"
