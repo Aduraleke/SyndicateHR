@@ -83,9 +83,8 @@ export default function Footer() {
           <h3 className="text-white font-semibold mb-4">Connect</h3>
           <div className="flex justify-center md:justify-start gap-5">
             {[
-              { icon: "mdi:linkedin", href: "#" },
-              { icon: "mdi:twitter", href: "#" },
-              { icon: "mdi:github", href: "#" },
+              { icon: "mdi:linkedin", href: "https://www.linkedin.com/company/hr-s-syndicate/posts/?feedView=all" },
+
             ].map((social, i) => (
               <motion.a
                 key={i}
